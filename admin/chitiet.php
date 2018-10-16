@@ -13,7 +13,7 @@
 <?php
 	$id=$_GET['id'];
 	$db = new DB;
-	$product = $db->product1($id);
+	$product = $db->chitiet($id);
 	foreach ($product as  $value) {
 	?>
 		<div class='sanpham'> 

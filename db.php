@@ -28,7 +28,7 @@ class Db{
 
 
 	
-	public function products(){
+public function products(){
 		//Viet cau SQL
 		$sql = "SELECT id,image,name,manu.manu_name ,protypes.type_name,description,price FROM products,manu,protypes WHERE products.manu_id = manu.manu_id AND products.type_id = protypes.type_id ORDER BY id DESC
 			";
@@ -36,12 +36,12 @@ class Db{
 		return $this->getData($result);
 	}
 
-	function search($key){
+public function search($key){
 	$sql = "SELECT image,name,manu.manu_name ,protypes.type_name,description,price FROM products,manu,protypes WHERE products.manu_id = manu.manu_id AND products.type_id = protypes.type_id AND name LIKE '%$key%' ";
 	$result = self::$conn->query($sql);
 	return $this->getData($result);
 	}
-	function deleteSP($id){
+public function deleteSP($id){
 	$sql= " DELETE FROM products WHERE id = $id" ;
 	var_dump($sql);
 	$result = self::$conn->query($sql);
@@ -60,13 +60,13 @@ $result = self::$conn->query($sql);
 return $this->getData($result);     
 } 
 
-function countPro(){
+public function countPro(){
 
 	$sql = "SELECT * FROM products";
 	$result = self::$conn->query($sql);
 	return $result->num_rows;
 }
-function pagination ($base_url, $total_rows, $page, $per_page, $offset)
+public function pagination ($base_url, $total_rows, $page, $per_page, $offset)
 {
 	if($total_rows <= 0) {
 		return "";
@@ -92,7 +92,7 @@ function pagination ($base_url, $total_rows, $page, $per_page, $offset)
 	return $link;
 }
 
-function first_links ($base_url, $total_rows, $page, $per_page)
+public function first_links ($base_url, $total_rows, $page, $per_page)
 {
 	$total_links=1;
 	if($total_rows <= 0) {
@@ -116,7 +116,7 @@ function first_links ($base_url, $total_rows, $page, $per_page)
 	return $first_link.$prev_link;
 }
 
-function last_links ($base_url, $total_rows, $page, $per_page)
+public function last_links ($base_url, $total_rows, $page, $per_page)
 {
 	$total_links=1;
 	if($total_rows <= 0) {
@@ -139,7 +139,7 @@ function last_links ($base_url, $total_rows, $page, $per_page)
 	}
 	return $next_link.$last_link;
 }
-function addProduct($name, $manu_id, $type_id , $description, $price, $image) {
+public function addProduct($name, $manu_id, $type_id , $description, $price, $image) {
 
 	$sql = "INSERT INTO products( name, manu_id, type_id, description, price, image ) 
 			VALUES ('$name','$manu_id','$type_id','$description','$price','$image')";
@@ -148,12 +148,28 @@ function addProduct($name, $manu_id, $type_id , $description, $price, $image) {
 	$result = self::$conn->query($sql);
 	return $result;
 }
-public function getproduct($id){
-		//Viet cau SQL
+public function getproductID($id){
+
 		$sql = "SELECT * FROM products WHERE id = $id";
-		var_dump($sql);
+		//var_dump($sql);
 		$result = self::$conn->query($sql);
 		return $this->getData($result);
-	}
+}
+
+public function editProduct($id,$name,$manu_id,$type_id,$price,$description,$image) {
+
+	$sql = "UPDATE products SET
+	name = '$name',
+	manu_id = '$manu_id',
+	type_id = '$type_id',
+	price = $price,
+	description = '$description',
+	image = '$image' 
+	WHERE id =$id";
+	var_dump($sql); 
+	$result = self::$conn->query($sql);
+	return $result;
+}
+
 }
 ?>

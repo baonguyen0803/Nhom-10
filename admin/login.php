@@ -1,22 +1,17 @@
 <?php
 session_start();
-if(isset($_POST['user'])){
-	require_once "connection.php";
-	$user = new User($_POST['user'],$_POST['pass']);
-	if($user1->login($_POST['user'],$_POST['pass'])){
-		//dk dung
-		//luu thong tin vao session
-		$_SESSION['user'] = $_POST['user'];
-		if(isset($_POST['remember'])){
-			//luu cookie
-			setcookie('user',$_POST['user'],time()+3600);
-			setcookie('pass',$_POST['pass'],time()+3600);
+require_once "user.php";
+if(isset($_GET['user'])){
+	$user1 = new User($_GET['user'],$_GET['pass']);
+	if($user1->login($_GET['user'],$_GET['pass'])){
+		if(isset($_GET['remember'])){
+			setcookie('user',$_GET['user'],time()+3600);
+			setcookie('pass',$_GET['pass'],time()+3600);
 		}
-		//chuyen sang trang admin
+		//echo "Logged in successfully";
+		//Luu thong tin vao session
+		$_SESSION['user']=$_GET['user'];
 		header('location:index.php');
-	}
-	else{
-		echo "Nhập sai thông tin";
 	}
 }
 ?>
@@ -26,11 +21,11 @@ if(isset($_POST['user'])){
 	<title>Login</title>
 </head>
 <body>
-<form action="" method="post">
-	Username <input type="text" name="user" value="<?php echo isset($_COOKIE['user'])?$_COOKIE['user']:'' ?>"><br>
-	Password <input type="Password" name="pass"><br>
+<form action="index.php" method="get">
+	Username<input type="text" name="user" value="<?php echo isset($_COOKIE['user'])?$_COOKIE['user']:"" ?>"><br>
+	Password<input type="Password" name="pass"><br>
 	<input type="checkbox" name="remember">Remember
-	<input type="submit" name="">
+	<input type="submit" name="" value="Submit">
 </form>
 </body>
 </html>

@@ -65,10 +65,10 @@ require "../config.php";
 
 <div id="sidebar"> <a href="#" class="visible-phone"><i class="icon icon-th"></i>Tables</a>
 	<ul>
-		<li><a href="index.php"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+		<li><a href="index.html"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
 
-		<li> <a href="addproduct.php"><i class="icon icon-th-list"></i> <span>Add New Product</span></a></li>
-		<li> <a href="manufactures.php"><i class="icon icon-th-list"></i> <span>Manufactures</span></a></li>
+		<li> <a href="form.html"><i class="icon icon-th-list"></i> <span>Add New Product</span></a></li>
+		<li> <a href="manufactures.html"><i class="icon icon-th-list"></i> <span>Manufactures</span></a></li>
 
 
 
@@ -77,7 +77,7 @@ require "../config.php";
 <!-- BEGIN CONTENT -->
 <div id="content">
 	<div id="content-header">
-		<div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom current"><i class="icon-home"></i> Home</a></div>
+		<div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom current"><i class="icon-home"></i> Home</a></div>
 		<h1>Search Result:</h1>
 	</div>
 	<div class="container-fluid">
@@ -85,7 +85,7 @@ require "../config.php";
 		<div class="row-fluid">
 			<div class="span12">
 				<div class="widget-box">
-					<div class="widget-title"> <span class="icon"><a href="addproduct.php"> <i class="icon-plus"></i> </a></span>
+					<div class="widget-title"> <span class="icon"><a href="form.html"> <i class="icon-plus"></i> </a></span>
 						<h5>Products</h5>
 					</div>
 					<div class="widget-content nopadding">
@@ -137,7 +137,7 @@ require "../config.php";
 <!-- END CONTENT -->
 <!--Footer-part-->
 <div class="row-fluid">
-	<div id="footer" class="span12"> 2018 Nguyễn Đình Bảo &copy; TDC - Lập trình web 1</div>
+	<div id="footer" class="span12"> 2017 &copy; TDC - Lập trình web 1</div>
 </div>
 <!--end-Footer-part-->
 <script src="public/js/jquery.min.js"></script>

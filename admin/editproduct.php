@@ -63,9 +63,9 @@
 
 <div id="sidebar"> <a href="#" class="visible-phone"><i class="icon icon-th"></i>Tables</a>
 	<ul>
-		<li><a href="index.php"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+		<li><a href="index.html"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
 
-		<li> <a href="addproduct.php"><i class="icon icon-th-list"></i> <span>Add New Product</span></a></li>
+		<li> <a href="form.html"><i class="icon icon-th-list"></i> <span>Edit Product</span></a></li>
 		<li> <a href="manufactures.html"><i class="icon icon-th-list"></i> <span>Manufactures</span></a></li>
 
 
@@ -77,7 +77,7 @@
 <div id="content">
 	<div id="content-header">
 		<div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom current"><i class="icon-home"></i> Home</a></div>
-		<h1>Add New Product</h1>
+		<h1>Edit Product</h1>
 	</div>
 	<div class="container-fluid">
 		<hr>
@@ -88,12 +88,22 @@
 						<h5>Product Detail</h5>
 					</div>
 					<div class="widget-content nopadding">
+						<?php 
+							require_once '../config.php';
+							require_once '../db.php';
+
+							$id = $_GET['id'];
+							$db = new Db;
+							$getproduct = $db->getproductID($id);
+						?>
+
 						<!-- BEGIN USER FORM -->
-						<form action="addsp.php" method="post" class="form-horizontal" enctype="multipart/form-data">
+						<form action="editsp.php" method="post" class="form-horizontal" enctype="multipart/form-data">
 							<div class="control-group">
 								<label class="control-label">Name :</label>
 								<div class="controls">
-									<input type="text" class="span11" placeholder="Product name" name="name" /> *
+									<input type="hidden" class="span11" name="id" value="<?php echo $getproduct[0]['id']?>">
+									<input type="text" class="span11" placeholder="Product name" name="name" value="<?php echo $getproduct[0]['name']?>" /> *
 								</div>
 							</div>
 							<div class="control-group">
@@ -105,6 +115,7 @@
 										<option value="2">Laptop</option>
 										<option value="1">Speaker</option>
 										<option value="1">Smartwatch</option>
+										
 
 									</select> *
 								</div>
@@ -117,31 +128,33 @@
 										<option value="4">SamSung</option>
 										<option value="3">Lenovo</option>
 										<option value="2">Oppo</option>
-										<option value="1">Sony</option>			
+										<option value="1">Sony</option>
 
 									</select> *
 								</div>
 								<div class="control-group">
 									<label class="control-label">Choose an image :</label>
 									<div class="controls">
+										<img src = '../image/<?php echo $getproduct[0]['image'] ?>'>
 										<input type="file" name="fileUpload" id="fileUpload">
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label"  >Description</label>
 									<div class="controls">
-										<textarea class="span11" placeholder="Description" name = "description"></textarea>
+										<textarea class="span11" placeholder="Description" name = "description"
+										value=""><?php echo $getproduct[0]['description']?></textarea>
 									</div>
 									<div class="control-group">
 										<label class="control-label">Price :</label>
 										<div class="controls">
-											<input type="text" class="span11" placeholder="price" name = "price" /> *
+											<input type="text" class="span11" placeholder="price" name = "price" value="<?php echo $getproduct[0]['price']?>" /> *
 										</div>
 
 									</div>
 
 									<div class="form-actions">
-										<button type="submit" class="btn btn-success">Add</button>
+										<button type="submit" class="btn btn-success">Update</button>
 									</div>
 								</div>
 
